@@ -1,6 +1,5 @@
 // src/components/Stopwatch/Stopwatch.jsx
 import React, { useState, useEffect } from 'react';
-import styles from './stopwatch.module.css';
 
 const Stopwatch = () => {
   const [time, setTime] = useState(0);
@@ -20,7 +19,11 @@ const Stopwatch = () => {
   }, [isRunning]);
 
   const startStopwatch = () => {
-    setIsRunning(prevState => !prevState);
+    setIsRunning(true);
+  };
+
+  const stopStopwatch = () => {
+    setIsRunning(false);
   };
 
   const resetStopwatch = () => {
@@ -31,15 +34,19 @@ const Stopwatch = () => {
   const formatTime = () => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
   return (
-    <div className={styles.stopwatch}>
+    <div >
       <h2>Stopwatch</h2>
-      <div className={styles.time}>{formatTime()}</div>
-      <div className={styles.buttons}>
-        <button onClick={startStopwatch}>{isRunning ? 'Stop' : 'Start'}</button>
+      <div >Time: {formatTime()}</div>
+      <div>
+        {isRunning ? (
+          <button onClick={stopStopwatch}>Stop</button>
+        ) : (
+          <button onClick={startStopwatch}>Start</button>
+        )}
         <button onClick={resetStopwatch}>Reset</button>
       </div>
     </div>
