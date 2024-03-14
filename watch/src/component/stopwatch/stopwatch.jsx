@@ -1,4 +1,4 @@
-// src/components/Stopwatch/Stopwatch.jsx
+// Stopwatch.jsx
 import React, { useState, useEffect } from 'react';
 
 const Stopwatch = () => {
@@ -34,13 +34,13 @@ const Stopwatch = () => {
   const formatTime = () => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
   return (
-    <div >
+    <div>
       <h2>Stopwatch</h2>
-      <div >Time: {formatTime()}</div>
+      <div>Time: {formatTime()}</div>
       <div>
         {isRunning ? (
           <button onClick={stopStopwatch}>Stop</button>
